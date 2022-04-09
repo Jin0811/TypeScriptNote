@@ -1,0 +1,10 @@
+{
+  /*
+    tsconfig.json是ts编译器的配置文件，ts编译器可以根据这个文件来对代码进行编译
+  */
+  "compilerOptions": {
+    "module": "ES2015",
+    "target": "ES2015",
+    "strict": true
+  }
+}

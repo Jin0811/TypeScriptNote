@@ -1,0 +1,78 @@
+{
+  /*
+    tsconfig.json是ts编译器的配置文件，ts编译器可以根据这个文件来对代码进行编译
+  */
+
+  // 指定指定哪些ts文件需要被编译
+  // **代表任意目录，*代表任意文件
+  // 例如：./src/**/* 代表src下面任意目录里面的任意文件
+  "include": ["./src/**/*"],
+
+  // 不需要编译的文件目录路径
+  // 默认值：['node_modules', 'bower_components', 'jspm_packages']
+  // "exclude": ["./src/test2.ts"],
+
+  // 如果有多个配置文件，可以用extends来继承合并其他的配置文件
+  // "extends": ""
+
+  // 与include的作用类似，可以指定某些文件需要进行编译
+  // "files": ['file1.ts', 'file2.ts']
+
+  // 编译器选项
+  "compilerOptions": {
+    // target用来指定ts被编译为ES的版本，可选值：'es3'、'es5'、'es6'、'es2015'、'es2016'、'es2017'、'es2018'、'es2019'、'es2020'、'es2021'、'esnext'
+    "target": "es6",
+    
+    // module指定要使用的模块化规范，可选值：'none'、'commonjs'、'amd'、'system'、'umd'、'es6'、'es2015'、'es2020'、'es2022'、'esnext'、'node12'、'nodenext'
+    "module": "system",
+
+    // lib用来指定项目中用到的库，一般情况下不需要设置lib
+    // 可以随便写一个错误的值，编译不通过就会显示出全部的可选值
+    // "lib": []
+
+    // outDir用来指定编译后的js的目录
+    "outDir": "./dist",
+
+    // outFile 仅支持"amd"和"system"模块，即当使用outFile时，module的值只能为amd或system
+    // "outFile": "./dist/app.js"
+    
+    // 是否对js文件进行编译，默认为false，编译完成后的目录不会有js，修改为true，就会编译js
+    "allowJs": true,
+
+    // 是否检查js代码是否符合语法规范，默认为false，不进行检查
+    // 为true时，js当中的代码不规范会造成编译失败
+    "checkJs": true,
+
+    // 是否移除注释，默认为false
+    "removeComments": true,
+
+    // 不生成编译后的文件，默认为false，执行编译，但是不生成编译后的文件
+    "noEmit": false,
+
+    // 当有错误的时候，不生成文件，默认为false
+    // false：出现错误也会生成文件
+    // true：出现错误就不会生成编译文件
+    "noEmitOnError": false,
+
+    // 所有严格检查的的总开关，默认为false
+    "strict": true,
+
+    // 是否使用严格模式，默认为false，不使用严格模式
+    // 严格模式下的js文件，在开头会有："use strict";
+    // 如果js文件当中用到了模块化，则不会有上面的语句，因为js会在有模块化的时候，自动进入严格模式
+    "alwaysStrict": true,
+
+    // true：不允许隐式的any
+    // false：允许隐式的any
+    "noImplicitAny": true,
+
+    // true：不允许使用不明确类型的this
+    // false：允许使用
+    "noImplicitThis": true,
+
+    // 是否严格检查null
+    // true：开启严格检查
+    // false：关闭严格检查
+    "strictNullChecks": true,
+  }
+}
