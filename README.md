@@ -74,3 +74,20 @@ const arr3: Array<string | number> = [];
 arr3.push("tom");
 arr3.push(1);
 ```
+
+#### Tuple
+
+Tuple 可以说是 Array 的一种特殊情况，Array 可以限制数组内的元素类型，但是无法限制数组内元素的数量和位置。Tuple 的作用就是限制元素的类型、个数、位置的数组，同时 Tuple 这个概念值存在于 TS，在 JS 上是不存在的
+
+注意：在 TS 中，是允许对 Tuple 扩增的（也就是允许使用 push 方法），但在访问上不允许
+
+```ts
+/**
+ * Tuple 元组
+ * 元组内元素的数量、位置、类型都必须一致
+ */
+// const tuple1: [number, string] = []; // 不能将类型“[]”分配给类型“[number, string]”。源具有0个元素，但目标需要2个
+// const tuple1: [number, string] = [1, "tom", "jack"]; // 不能将类型“[number, string, string]”分配给类型“[number, string]”。源具有3个元素，但目标仅允许2个
+// const tuple1: [number, string] = ["tom", 1]; // 不能将类型“string”分配给类型“number”，不能将类型“number”分配给类型“string”
+const tuple1: [number, string] = [1, "tom"];
+```
