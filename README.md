@@ -344,3 +344,21 @@ const p1: pAllType = {
   d: Symbol(),
 };
 ```
+
+### 2.6 类型断言和类型守卫
+
+#### 类型断言
+
+在特定的环境中，我们会比 TS 知道这个值具体是什么类型，不需要 TS 去判断，简单的理解就是，类型断言会告诉编译器，你不用给我进行检查，相信我，他就是这个类型
+
+语法：
+
+- 尖括号语法（尖括号语法在 react 当中会报错，因为会与 react 中的 JSX 语法冲突）
+- as 语法（推荐使用 as 语法）
+
+```ts
+const q1: unknown = "typescript";
+// const q1_Len = q1.toUpperCase(); // “q1”的类型为“未知”
+const q1_Len_1 = (q1 as string).toUpperCase(); // as语法
+const q1_Len_2 = (<string>q1).toUpperCase(); // 尖括号语法
+```
