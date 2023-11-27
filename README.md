@@ -178,3 +178,61 @@ function getData(id: string | Array<string>): DataType | Array<DataType> {
   }
 }
 ```
+
+### 2.3 特殊类型
+
+#### any 和 unknown
+
+- any
+  - 表示任意类型，即可以赋值给任何类型的变量；使用 any 类型后，该变量可以进行任何操作而不会触发类型检查，相当于关闭了类型检查器的所有限制
+  - any 可以随意赋值给其他变量
+- unknown
+  - 表示未知类型，即不确定具体类型的变量；与 any 不同，使用 unknown 类型后，该变量在没有进行类型检查或类型断言之前，不能被赋值给其他变量或进行任何操作
+  - unknown 在没有进行类型推断之前，无法赋值给其他变量
+
+```ts
+let t1: any;
+t1 = 1;
+t1 = "1";
+t1 = true;
+t1 = null;
+t1 = undefined;
+t1.toString();
+
+let t2: unknown;
+t2 = 1;
+t2 = "1";
+t2 = true;
+t2 = null;
+t2 = undefined;
+// t2.toString(); // “t2”的类型为“未知”
+// new t2(); // “t2”的类型为“未知”
+
+let t_any: number = t1; // any可以随意赋值给其他变量
+// let t_unknown_1: number = t2; // 未进行类型推断，不能将类型“unknown”分配给类型“number”
+let t_unknown_2: number = t2 as number; // 已进行类型推断，可以进行赋值
+```
+
+#### void 和 never
+
+- void
+  - 当一个函数，没有返回值时，TS 会默认他的返回值为 void 类型
+- never
+  - 表示一个函数永远不存在返回值，TS 会认为类型为 never，那么与 void 相比，never 应该是 void 的子集，因为 void 实际上的返回值为 undefined，而 never 连 undefined 也不行
+  - 符合 never 的情况有：当抛出异常的情况和无限死循环
+
+```ts
+function t3(num1: number) {
+  console.log(num1);
+}
+function t4(num1: number): void {
+  console.log(num1);
+}
+// never不能返回undefined，错误信息：返回“从不”的函数不能具有可访问的终结点
+// function t5(num1: number): never {
+//   console.log(num1);
+// }
+function t6(num1: number): never {
+  throw new Error("Error!");
+}
+```
