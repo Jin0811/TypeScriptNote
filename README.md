@@ -121,3 +121,60 @@ const tuple1: [number, string] = [1, "tom"];
   // obj3 = null; // 不能将类型“null”分配给类型“Object”
   // obj3 = undefined; // 不能将类型“undefined”分配给类型“Object”
   ```
+
+#### function 函数
+
+函数，分为普通函数和箭头函数，在书写的时候，可以写入返回值的类型，如果写入，则必须要有对应类型的返回值，但通常情况下是省略，因为 TS 的类型推断功能够正确推断出返回值类型
+
+- 可选参数：如果函数要配置可有可无的参数时，可以通过 ? 实现，切可选参数一定要在最后面
+
+  ```ts
+  // 可选参数
+  function test4(name: string, age?: number): void {
+    console.log(name, age);
+  }
+  ```
+
+- 默认参数：函数内可以自己设定其默认参数，用 = 实现
+
+  ```ts
+  // 默认参数
+  function test5(name: string, age: number = 18) {
+    console.log(name, age);
+  }
+  ```
+
+- 剩余参数：仍可以使用扩展运算符 ...
+
+  ```ts
+  // 剩余参数
+  function test6(...nums: Array<number>): number {
+    return nums.reduce((pre: number, cur: number) => pre + cur, 0);
+  }
+  ```
+
+函数重载
+
+是使用相同名称和不同参数数量或类型创建多个方法的一种能力，在 TypeScript 中，表现为给同一个函数提供多个函数类型定义；简单的说：可以在同一个函数下定义多种类型值，总后汇总到一块；函数只能有一个函数体，但是可以有多个重载签名
+
+```ts
+type DataType = {
+  id: number;
+  name: string;
+  age: number;
+};
+function getData(id: string): DataType;
+function getData(id: Array<string>): Array<DataType>;
+function getData(id: string | Array<string>): DataType | Array<DataType> {
+  if (Array.isArray(id)) {
+    const data: Array<DataType> = [
+      { id: 1, name: "张三", age: 18 },
+      { id: 2, name: "李四", age: 20 },
+    ];
+    return data;
+  } else {
+    const data: DataType = { id: 1, name: "张三", age: 18 };
+    return data;
+  }
+}
+```
