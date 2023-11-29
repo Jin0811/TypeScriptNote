@@ -650,3 +650,18 @@ class Implements_class implements class_inter {
 - private 私有属性，私有属性只能在类内部进行访问和修改，子类当中也不能访问和修改
 - protected 受保护的，只能在当前类和当前类的子类进行访问和修改
 - readonly 只读
+
+#### type 和 interface 的比较
+
+相同点
+
+- 都可以描述一个对象或者函数
+- type 和 interface 都可以实现扩展
+
+不同点
+
+- 类型别名可以用于其他类型，如基本类型、联合类型、元组，而 interface 不支持
+- type 用 & 符号来实现扩展，而 interface 使用 extends 来实现扩展
+- type 可以扩展任意类型，但是 interface 只能扩展对象和元组，不能扩展基本类型和联合类型
+- type 不允许重复定义，而 interface 可以重复定义，重复定义的接口会自动进行合并
+- type 可以使用 in 关键字生成映射类型，但是 interface 不行

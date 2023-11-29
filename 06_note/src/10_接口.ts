@@ -68,6 +68,22 @@ const A_inter_2_obj: A_inter_2 = {
   mark: 2,
 };
 
+// type 可以扩展任意类型，但是 interface 只能扩展对象和元组，不能扩展基本类型和联合类型
+type t_number = string;
+type t_union = string | number;
+type t_tuple = [string, number];
+// interface inter_t_1 extends t_number {} // 扩展基本类型，报错：接口只能扩展使用静态已知成员的对象类型或对象类型的交集
+// interface inter_t_1 extends t_union {} // 扩展联合类型，报错：接口只能扩展使用静态已知成员的对象类型或对象类型的交集
+interface inter_t_1 extends t_tuple {} // 扩展元组，正常
+
+// 接口之所以可以扩展元组，是因为接口可以通过一种特殊的写法来实现元组
+// type t_tuple = [string, number];
+// interface inter_t_2 { 0: string; 1: number; }
+interface inter_t_2 {
+  0: string;
+  1: number;
+}
+
 // 接口重复定义：重复定义的接口会自动进行合并
 interface inter_repeat_1 {
   id: number;
